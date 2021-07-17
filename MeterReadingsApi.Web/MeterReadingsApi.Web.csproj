@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.8">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.8" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MeterReadingsApi.Data\MeterReadingsApi.Data.csproj" />
+    <ProjectReference Include="..\MeterReadingsApi.Interface\MeterReadingsApi.Interface.csproj" />
+    <ProjectReference Include="..\MeterReadingsApi.Model\MeterReadingsApi.Model.csproj" />
+    <ProjectReference Include="..\MeterReadingsApi.Service\MeterReadingsApi.Service.csproj" />
+  </ItemGroup>
+
+</Project>
