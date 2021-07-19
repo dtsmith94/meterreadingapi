@@ -2,7 +2,6 @@
 using System.Text;
 using System.Threading.Tasks;
 using MeterReadingsApi.Interface.Service.Services;
-using MeterReadingsApi.Model.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -13,21 +12,12 @@ namespace MeterReadingsApi.Web.Controllers
     public class MeterReadingUploadController : ControllerBase
     {
         private readonly ILogger<MeterReadingUploadController> _logger;
-        public readonly ICustomerAccountService _customerAccountService;
         private readonly IMeterReadingService _meterReadingService;
 
-        public MeterReadingUploadController(ILogger<MeterReadingUploadController> logger, ICustomerAccountService customerAccountService, IMeterReadingService meterReadingService)
+        public MeterReadingUploadController(ILogger<MeterReadingUploadController> logger, IMeterReadingService meterReadingService)
         {
             _logger = logger;
-            _customerAccountService = customerAccountService;
             _meterReadingService = meterReadingService;
-        }
-
-        // endpoint to get all customer accounts (for the purpose of checking the data seeded ok)
-        [HttpGet]
-        public async Task<CustomerAccount[]> Get()
-        {
-            return await _customerAccountService.GetAllAsync();
         }
 
         [HttpPost]
@@ -49,8 +39,7 @@ namespace MeterReadingsApi.Web.Controllers
                 return BadRequest(result);
             }
 
-            return Ok();
-
+            return Created(Request.Scheme + "://" + Request.Host + Request.Path, result);
         }
     }
 }

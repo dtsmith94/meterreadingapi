@@ -40,7 +40,7 @@ namespace MeterReadingsApi.Service.Builders
                 var parsedDateTimeResult = DateTime.TryParse(parts[1], out var parsedDateTime);
 
                 // check that the meter reading value is in the correct format and only 5 characters long
-                var readingRegex = new Regex("/[^A-Za-z0-9]+/");
+                var readingRegex = new Regex("^[A-Za-z0-9]{5}$");
                 var readingRegexResult = readingRegex.IsMatch(parts[2]);
 
                 if (!parsedIdResult || !parsedDateTimeResult || !readingRegexResult)

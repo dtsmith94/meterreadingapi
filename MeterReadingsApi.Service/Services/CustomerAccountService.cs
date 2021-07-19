@@ -1,10 +1,6 @@
 ﻿using MeterReadingsApi.Interface.Data.Repositories;
 using MeterReadingsApi.Interface.Service.Services;
 using MeterReadingsApi.Model.Data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace MeterReadingsApi.Service.Services
@@ -18,9 +14,9 @@ namespace MeterReadingsApi.Service.Services
             _customerAccountRepository = customerAccountRepository;            
         }
 
-        public async Task<CustomerAccount> GetAsync(int id)
+        public async Task<CustomerAccount> GetAsync(int id, bool includeMeterReadings)
         {
-            return await _customerAccountRepository.GetAsync(id).AsTask();
+            return await _customerAccountRepository.GetAsync(id, includeMeterReadings);
         }
 
         public async Task<CustomerAccount[]> GetAllAsync()

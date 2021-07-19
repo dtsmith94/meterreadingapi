@@ -3,7 +3,6 @@ using MeterReadingsApi.Interface.Data.Repositories;
 using MeterReadingsApi.Model.Data;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -22,9 +21,16 @@ namespace MeterReadingsApi.Data.Repositories
             SeedData();
         }
 
-        public ValueTask<CustomerAccount> GetAsync(int id)
+        public Task<CustomerAccount> GetAsync(int id, bool includeMeterReadings)
         {
-            return _context.CustomerAccounts.FindAsync(id);
+            var query = _context.CustomerAccounts.AsQueryable();
+
+            if (includeMeterReadings)
+            {
+                query = query.Include(account => account.MeterReadings);
+            }
+
+            return query.FirstOrDefaultAsync(account => account.Id == id);
         }
 
         public Task<CustomerAccount[]> GetAllAsync()

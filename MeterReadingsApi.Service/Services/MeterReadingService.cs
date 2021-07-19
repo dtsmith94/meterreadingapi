@@ -30,12 +30,25 @@ namespace MeterReadingsApi.Service.Services
             foreach(var meterReading in meterReadings)
             {
                 // check that the customer account is valid
-                var customerAccount = await _customerAccountService.GetAsync(meterReading.CustomerAccountId);
+                var customerAccount = await _customerAccountService.GetAsync(meterReading.CustomerAccountId, true);
                 if (customerAccount == null)
                 {
                     // mark the meter reading as invalid so we can remove it after looping through all meter readings
                     invalidMeterReadings.Add(meterReading);
                     failedCount++;
+                }
+                else
+                {
+                    // if the account exists, check that we haven't already uploaded this meter reading value
+                    foreach (var existingReading in customerAccount.MeterReadings)
+                    {
+                        if(meterReading.Value == existingReading.Value)
+                        {
+                            invalidMeterReadings.Add(meterReading);
+                            failedCount++;
+                            break;
+                        }
+                    }
                 }
             }
 
