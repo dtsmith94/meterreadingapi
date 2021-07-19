@@ -37,7 +37,7 @@ namespace MeterReadingsApi.Service.Services
                     invalidMeterReadings.Add(meterReading);
                     failedCount++;
                 }
-                else
+                else if (customerAccount.MeterReadings != null)
                 {
                     // if the account exists, check that we haven't already uploaded this meter reading value
                     foreach (var existingReading in customerAccount.MeterReadings)

@@ -14,4 +14,10 @@
     <PackageReference Include="coverlet.collector" Version="3.0.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MeterReadingsApi.Interface\MeterReadingsApi.Interface.csproj" />
+    <ProjectReference Include="..\MeterReadingsApi.Model\MeterReadingsApi.Model.csproj" />
+    <ProjectReference Include="..\MeterReadingsApi.Service\MeterReadingsApi.Service.csproj" />
+  </ItemGroup>
+
 </Project>
