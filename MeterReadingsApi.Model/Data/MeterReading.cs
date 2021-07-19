@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace MeterReadingsApi.Model.Data
 {
@@ -15,6 +16,7 @@ namespace MeterReadingsApi.Model.Data
         public DateTime DateTime { get; set; }
         [ForeignKey("CustomerAccount")]
         public int CustomerAccountId { get; set; }
+        [JsonIgnore]
         public CustomerAccount CustomerAccount { get; set; }
     }
 }

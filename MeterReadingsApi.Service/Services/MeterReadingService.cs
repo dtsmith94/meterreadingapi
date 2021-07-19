@@ -57,7 +57,7 @@ namespace MeterReadingsApi.Service.Services
                 meterReadings.Remove(invalidMeterReading);
             }
 
-          //  await _meterReadingRepository.AddRangeAsync(meterReadings);
+            await _meterReadingRepository.AddRangeAsync(meterReadings);
 
             return new MeterReadingUploadResultViewModel
             {
